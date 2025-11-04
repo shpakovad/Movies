@@ -1,12 +1,11 @@
 'use client';
 
-import { useCallback, useEffect } from 'react';
+import {useCallback, useEffect} from 'react';
 
-import { useRouter, useSearchParams } from 'next/navigation';
-
-import { setCurrentPage } from '@/app/lib/feauters/movies/movies-slice';
-import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
-import { getMoviesList } from '@/app/lib/movie-service';
+import {useUrlParams} from "@/app/lib/hooks/useUrlParams";
+import {setCurrentPage} from '@/app/lib/feauters/movies/movies-slice';
+import {useAppDispatch, useAppSelector} from '@/app/lib/hooks';
+import {getMoviesList} from '@/app/lib/movie-service';
 
 import Error from '@/app/components/Error/ErrorPage';
 import LoadingPage from '@/app/components/Loading/LoadingPage';
@@ -18,31 +17,34 @@ import styles from './main.module.css';
 
 export function MainPage() {
   const dispatch = useAppDispatch();
-  const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const urlPage = searchParams.get('page');
+  const { urlPage, addToUrl } = useUrlParams({
+    searchParam: 'page',
+    additionalString: '?'
+  })
 
   const { error, loading, movies, currentPage, totalPages } = useAppSelector(
     (state) => state.moviesState
   );
 
   useEffect(() => {
-    if (urlPage !== null) {
+    if (urlPage !== null)
+    {
       const pageNum = parseInt(urlPage);
       dispatch(setCurrentPage(pageNum));
       dispatch(getMoviesList(pageNum));
-    } else {
+    }
+    else
+    {
       dispatch(getMoviesList());
     }
   }, [dispatch]);
 
   const onPaginationHandle = useCallback(
-    (page: number) => {
+    (page: number) =>
+    {
       dispatch(setCurrentPage(page));
-      const params = new URLSearchParams(searchParams.toString());
-      params.set('page', page.toString());
-      router.push(`?${params.toString()}`, { scroll: false });
+      addToUrl({addedParameter: page})
 
       dispatch(getMoviesList(page));
     },
