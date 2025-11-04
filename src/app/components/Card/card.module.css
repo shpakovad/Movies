@@ -1,0 +1,41 @@
+:root {
+  --margin-size: 14px;
+  --padding-size: 14px;
+}
+
+.cardWrapper {
+  background: var(--magenta-3);
+  width: 300px;
+}
+
+.posterWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--margin-size);
+}
+
+.year {
+  text-align: end;
+  font-weight: bold;
+  padding-bottom: var(--padding-size);
+}
+
+.genre {
+  text-align: end;
+}
+
+.description {
+  margin: var(--margin-size);
+}
+
+.ratingWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: var(--margin-size);
+}
+
+.ratingTitle {
+  font-weight: bold;
+}
