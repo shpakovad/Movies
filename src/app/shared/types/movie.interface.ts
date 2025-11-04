@@ -1,4 +1,9 @@
+export interface MovieGenres {
+  score: number;
+  show: Movie;
+}
 export interface Movie {
+  show?: Movie;
   averageRuntime: number;
   dvdCountry: string | null;
   ended: string;

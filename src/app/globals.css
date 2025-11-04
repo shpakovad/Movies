@@ -23,7 +23,7 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--blue-5);
   text-decoration: none;
 }
 
@@ -34,4 +34,8 @@ a {
 .anticon.anticon-right svg,
 .anticon.anticon-left svg {
   color: var(--blue-6);
+}
+
+.ant-pagination {
+  padding: 30px 0;
 }
