@@ -1,19 +1,19 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
+  --background: var(--gray-1);
+  --foreground: var(--gray-1);
 
   --text-primary: #000;
-  --text-secondary: #666;
+  --text-secondary: var(--gray-8);
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
+  --button-primary-hover: var(--blue-7);
+  --button-secondary-hover: var(--blue-7);
+  --button-secondary-border: var(--blue-7);
 
   display: flex;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-roboto-sans);
   background-color: var(--background);
 }
 
@@ -25,7 +25,6 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  background-color: var(--foreground);
   padding: 120px 60px;
 }
 
@@ -134,8 +133,8 @@ a.secondary {
     --text-primary: #ededed;
     --text-secondary: #999;
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+    --button-primary-hover: var(--blue-7);
+    --button-secondary-hover: var(--blue-7);
+    --button-secondary-border: var(--blue-7);
   }
 }
