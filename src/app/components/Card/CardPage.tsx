@@ -2,9 +2,15 @@
 
 import { Card, Image, Rate } from 'antd';
 
-import styles from './card.module.css';
+import Link from 'next/link';
+
 import { Movie } from '@/app/shared/types/movie.interface';
-import { getYearFromString } from '@/app/utils/DateUtils';
+
+import { getYearFromString } from '@/app/utils/dateUtils';
+import { convertToPathString } from '@/app/utils/pathUtils';
+
+import styles from './card.module.css';
+import noImage from '@/app/assests/images/no-image.png';
 
 export const CardPage = (props: Movie) => {
   const { name, image, summary, rating, premiered, genres } = props;
@@ -18,15 +24,23 @@ export const CardPage = (props: Movie) => {
     <Card className={cardWrapper} title={name} extra={<a href="#">More</a>}>
       <div className={year}>{movieYear}</div>
       <div className={posterWrapper}>
-        <Image alt={name} src={image?.medium} width="70%" height="70%" preview={false} />
+        {image?.medium ? (
+          <Image alt={name} src={image?.medium} width="70%" height="70%" />
+        ) : (
+          <img src={noImage.src} alt={name} width="190px" height="245px" />
+        )}
       </div>
       {/*<p className={description} dangerouslySetInnerHTML={{ __html: summary }}/>*/}
       <div className={genre}>
         {genres.map((item, index) =>
           index === genres.length - 1 ? (
-            <span key={`${name}-${item}`}>{item}</span>
+            <Link href={`/${convertToPathString(item)}`} key={`${name}-${item}`}>
+              {item}
+            </Link>
           ) : (
-            <span key={`${name}-${item}`}>{item},&nbsp;</span>
+            <Link href={`/${convertToPathString(item)}`} key={`${name}-${item}`}>
+              {item},&nbsp;
+            </Link>
           )
         )}
       </div>

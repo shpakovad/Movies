@@ -1,11 +1,15 @@
 'use client';
 
-import {useCallback, useEffect} from 'react';
+import { useCallback, useEffect } from 'react';
 
-import {useUrlParams} from "@/app/lib/hooks/useUrlParams";
-import {setCurrentPage} from '@/app/lib/feauters/movies/movies-slice';
-import {useAppDispatch, useAppSelector} from '@/app/lib/hooks';
-import {getMoviesList} from '@/app/lib/movie-service';
+import { setCurrentPage } from '@/app/lib/feauters/movies/movies-slice';
+import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
+import { useUrlParams } from '@/app/lib/hooks/useUrlParams';
+import { getMoviesList } from '@/app/lib/movie-service';
+
+import { IUrlParams } from '@/app/shared/types/url-params.interface';
+
+import { getMovieListUrl } from '@/app/utils/apiUtils';
 
 import Error from '@/app/components/Error/ErrorPage';
 import LoadingPage from '@/app/components/Loading/LoadingPage';
@@ -15,38 +19,36 @@ import CardPage from '../components/Card/CardPage';
 
 import styles from './main.module.css';
 
-export function MainPage() {
+export function MainPage({ type, param }: IUrlParams) {
   const dispatch = useAppDispatch();
 
   const { urlPage, addToUrl } = useUrlParams({
     searchParam: 'page',
-    additionalString: '?'
-  })
+    additionalString: '?',
+  });
+
+  const api = getMovieListUrl({ type, param });
 
   const { error, loading, movies, currentPage, totalPages } = useAppSelector(
     (state) => state.moviesState
   );
 
   useEffect(() => {
-    if (urlPage !== null)
-    {
+    if (urlPage !== null) {
       const pageNum = parseInt(urlPage);
       dispatch(setCurrentPage(pageNum));
-      dispatch(getMoviesList(pageNum));
-    }
-    else
-    {
-      dispatch(getMoviesList());
+      dispatch(getMoviesList({ api, page: pageNum }));
+    } else {
+      dispatch(getMoviesList({ api }));
     }
   }, [dispatch]);
 
   const onPaginationHandle = useCallback(
-    (page: number) =>
-    {
+    (page: number) => {
       dispatch(setCurrentPage(page));
-      addToUrl({addedParameter: page})
+      addToUrl({ addedParameter: page });
 
-      dispatch(getMoviesList(page));
+      dispatch(getMoviesList({ api, page }));
     },
     [dispatch]
   );
@@ -56,7 +58,7 @@ export function MainPage() {
   ) : error ? (
     <Error />
   ) : (
-    <div>
+    <div className={styles.mainWrapper}>
       <div className={styles.cardsWrapper}>
         {movies.map((movie) => (
           <CardPage key={movie.id} {...movie} />
