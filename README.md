@@ -1,2 +1,2 @@
 # Movies
-React, TypeScript, NextJS Ant Design
+React, TypeScript, NextJS, Ant Design
