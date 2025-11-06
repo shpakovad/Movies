@@ -4,6 +4,7 @@ import { Pagination } from 'antd';
 
 import React from 'react';
 
+import './pagination.css';
 import styles from './pagination.module.css';
 
 interface IProps {

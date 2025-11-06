@@ -1,0 +1,26 @@
+.ant-pagination .ant-pagination-item-active a,
+.ant-pagination .ant-pagination-item-active,
+.ant-pagination-item-link svg {
+  color: var(--magenta-3);
+  text-decoration: none;
+}
+
+.ant-pagination .ant-pagination-item-active {
+  border-color: var(--magenta-3);
+}
+
+.ant-pagination .ant-pagination-item:not(.ant-pagination-item-active):hover {
+  background-color: var(--magenta-3);
+}
+
+.ant-pagination .ant-pagination-item-active:hover {
+  border-color: transparent;
+}
+
+.ant-pagination .ant-pagination-item-active:hover a {
+  color: var(--magenta-3);
+}
+
+.ant-pagination {
+  padding: 30px 0;
+}

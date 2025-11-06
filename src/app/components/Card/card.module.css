@@ -4,8 +4,10 @@
 }
 
 .cardWrapper {
-  background: var(--magenta-3);
+  background: #3c3c3c;
+  border: 1px solid #404040;
   width: 300px;
+  font-weight: 600;
 }
 
 .posterWrapper {
@@ -18,10 +20,12 @@
   text-align: end;
   font-weight: bold;
   padding-bottom: var(--padding-size);
+  color: #e0e0e0;
 }
 
 .genre {
   text-align: end;
+  color: var(--magenta-3);
 }
 
 .description {
@@ -38,4 +42,5 @@
 
 .ratingTitle {
   font-weight: bold;
+  color: #e0e0e0;
 }
