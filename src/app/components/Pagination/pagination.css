@@ -1,28 +1,7 @@
-.ant-pagination .ant-pagination-item-active a,
-.ant-pagination .ant-pagination-item-active,
-.ant-pagination
-  .ant-pagination-jump-next
-  .ant-pagination-item-container
-  .ant-pagination-item-ellipsis,
-.ant-pagination
-  .ant-pagination-jump-prev
-  .ant-pagination-item-container
+
   .ant-pagination-item-ellipsis,
 .ant-pagination-item-link svg {
   color: var(--magenta-3) !important;
-  text-decoration: none;
-}
-
-.ant-pagination .ant-pagination-item-active {
-  border-color: var(--magenta-3);
-}
-
-.ant-pagination .ant-pagination-item:not(.ant-pagination-item-active):hover {
-  background-color: var(--magenta-3);
-}
-
-.ant-pagination .ant-pagination-item-active:hover {
-  border-color: transparent;
 }
 
 .ant-pagination .ant-pagination-item-active:hover a {

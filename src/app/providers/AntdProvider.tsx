@@ -20,6 +20,11 @@ const antStyleTheme = {
     Button: {
       defaultHoverBorderColor: 'var(--magenta-5)',
     },
+    Pagination: {
+      colorPrimary: 'var(--magenta-3)',
+      colorPrimaryHover: 'var(--magenta-5)',
+      colorBgTextHover: 'var(--magenta-5)'
+    }
   },
 };
 
