@@ -1,24 +1,30 @@
 'use client';
 
-import { Card, Image, Rate } from 'antd';
+import { Card, Image, Rate, Tooltip } from 'antd';
 
+import noImage from '@/app/assests/images/no-image.png';
 import { Movie } from '@/app/shared/types/movie.interface';
-
 import { getYearFromString } from '@/app/utils/dateUtils';
 
-
 import styles from './card.module.css';
-import noImage from '@/app/assests/images/no-image.png';
 
 export const CardPage = (props: Movie) => {
   const { name, image, rating, premiered, genres, id, network } = props;
-  const { year, cardWrapper, ratingWrapper, ratingTitle, posterWrapper, genre } = styles;
+  const { year, cardWrapper, ratingWrapper, ratingTitle, posterWrapper, genre, cardTitle } = styles;
 
   const ratingOutOf5 = rating.average ? rating.average / 2 : 0;
   const movieYear = getYearFromString(premiered);
 
   return (
-    <Card className={cardWrapper} title={name} extra={<a href={`/movies/${id}`}>More</a>}>
+    <Card
+      className={cardWrapper}
+      title={
+        <Tooltip title={name}>
+          <span className={cardTitle}>{name}</span>
+        </Tooltip>
+      }
+      extra={<a href={`/movies/${id}`}>More</a>}
+    >
       <div className={year}>
         {movieYear}
         {network?.country && <span>, {network.country.name}</span>}

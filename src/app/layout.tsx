@@ -1,13 +1,12 @@
-import { ConfigProvider } from 'antd';
-
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
-import { antStyleTheme } from '@/app/shared/antStyleTheme';
+import HeaderPage from '@/app/components/Header/HeaderPage';
+import { AntdProvider } from '@/app/providers/AntdProvider';
+import StoreProvider from '@/app/providers/StoreProvider';
 
 import './globals.css';
 import './lib/theme/css-variables.css';
-import StoreProvider from '@/app/StoreProvider';
 
 const roboto = Roboto({
   variable: '--font-roboto-sans',
@@ -26,11 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ConfigProvider theme={antStyleTheme}>
+      <AntdProvider>
         <body className={`${roboto.variable}`}>
-          <StoreProvider>{children}</StoreProvider>
+          <StoreProvider>
+            <HeaderPage />
+            <main>{children}</main>
+          </StoreProvider>
         </body>
-      </ConfigProvider>
+      </AntdProvider>
     </html>
   );
 }

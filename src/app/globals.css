@@ -34,3 +34,10 @@ a:hover {
 .ant-card-head-title {
   color: var(--gray-1);
 }
+
+main {
+  position: relative;
+  top: 81px;
+  height: calc(100vh - 81px);
+  overflow-y: auto;
+}
