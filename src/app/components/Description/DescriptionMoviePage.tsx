@@ -2,13 +2,11 @@
 
 import { Image, Rate } from 'antd';
 
+import noImage from '@/app/assests/images/no-image.png';
 import { CurrentMovie, Movie } from '@/app/shared/types/movie.interface';
-
 import { getYearFromString } from '@/app/utils/dateUtils';
 
-
 import styles from './description.module.css';
-import noImage from '@/app/assests/images/no-image.png';
 
 export const DescriptionMoviePage = (props: CurrentMovie) => {
   const { main, cast } = props;
@@ -21,9 +19,14 @@ export const DescriptionMoviePage = (props: CurrentMovie) => {
     <div className={styles.wrapper}>
       <section className={styles.heroWrapper}>
         {image?.original ? (
-          <Image src={image?.original} alt={name} className={styles.heroImage} height="100vh" />
+          <Image
+            src={image?.original}
+            alt={name}
+            className={styles.heroImage}
+            height="calc(100vh - 81px)"
+          />
         ) : (
-          <img src={noImage.src} alt={name} width="auto" height="100vh" />
+          <img src={noImage.src} alt={name} width="auto" height="calc(100vh - 81px)" />
         )}
 
         <div className={styles.heroOverlay} />
@@ -39,7 +42,7 @@ export const DescriptionMoviePage = (props: CurrentMovie) => {
           <div className={styles.dividersContent}>
             <div>
               <Rate className={styles.rating} allowHalf value={ratingOutOf5} disabled />
-              <span>{rating.average || 0}</span>
+              <span className={styles.ratingTitle}>{rating.average || 0}</span>
             </div>
             <div className={styles.details}>
               {genres.map((item, index) => (

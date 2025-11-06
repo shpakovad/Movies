@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { getMovie } from '@/app/lib/movie-service';
-
 import { CurrentMovie, Movie } from '@/app/shared/types/movie.interface';
 
 interface MovieState {

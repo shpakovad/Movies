@@ -4,12 +4,11 @@ import { useEffect } from 'react';
 
 import { useParams } from 'next/navigation';
 
-import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
-import { getMovie } from '@/app/lib/movie-service';
-
 import DescriptionMoviePage from '@/app/components/Description/DescriptionMoviePage';
 import ErrorPage from '@/app/components/Error/ErrorPage';
 import LoadingPage from '@/app/components/Loading/LoadingPage';
+import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
+import { getMovie } from '@/app/lib/movie-service';
 
 import styles from './movie.module.css';
 

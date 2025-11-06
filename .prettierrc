@@ -10,11 +10,7 @@
   "importOrder": [
     "^react$",
     "^next(/.*)?$",
-    "^@/app/lib(/.*)?$",
-    "^@/app/shared(/.*)?$",
-    "^@/app/utils(/.*)?$",
-    "^@/app/assets(/.*)?$",
-    "^@/app/components(/.*)?$",
+    "^@/app(/.*)?$",
     "^@/components(/.*)?$",
     "^../",
     "^./",
