@@ -17,7 +17,7 @@ const initialState: MoviesState = {
   loading: false,
   error: null,
   currentPage: 0,
-  totalPages: 50,
+  totalPages: 350,
 };
 
 const moviesSlice = createSlice({

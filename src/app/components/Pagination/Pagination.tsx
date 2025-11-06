@@ -16,7 +16,7 @@ interface IProps {
 export function PaginationPage({ currentPage, totalPages, onChange }: IProps) {
   return (
     <div className={styles.pagination}>
-      <Pagination defaultCurrent={currentPage} total={totalPages} onChange={onChange} />
+      <Pagination defaultCurrent={currentPage} total={totalPages} onChange={onChange} showSizeChanger={false}/>
     </div>
   );
 }
