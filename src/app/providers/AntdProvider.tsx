@@ -19,12 +19,14 @@ const antStyleTheme = {
     },
     Button: {
       defaultHoverBorderColor: 'var(--magenta-5)',
+      colorPrimary: 'var(--magenta-3)',
+      primaryColor: 'var(--gray-10)',
     },
     Pagination: {
       colorPrimary: 'var(--magenta-3)',
       colorPrimaryHover: 'var(--magenta-5)',
-      colorBgTextHover: 'var(--magenta-5)'
-    }
+      colorBgTextHover: 'var(--magenta-5)',
+    },
   },
 };
 

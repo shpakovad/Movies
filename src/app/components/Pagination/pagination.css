@@ -1,5 +1,4 @@
-
-  .ant-pagination-item-ellipsis,
+.ant-pagination-item-ellipsis,
 .ant-pagination-item-link svg {
   color: var(--magenta-3) !important;
 }
