@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import movieReducer from './feauters/movies/movie-slice';
 import moviesReducer from './feauters/movies/movies-slice';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       moviesState: moviesReducer,
+      movieState: movieReducer,
     },
   });
 };

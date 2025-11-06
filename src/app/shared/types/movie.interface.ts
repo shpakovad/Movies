@@ -2,15 +2,26 @@ export interface MovieGenres {
   score: number;
   show: Movie;
 }
+
+export interface CurrentMovie {
+  cast?: string[] | [];
+  main: Movie;
+}
+
+interface Image {
+  medium?: string;
+  original?: string;
+}
 export interface Movie {
   show?: Movie;
   averageRuntime: number;
+  description: string;
   dvdCountry: string | null;
   ended: string;
   externals: { tvrage: number; thetvdb: number; imdb: string };
   genres: string[];
   id: number;
-  image: { medium?: string; original?: string };
+  image: Image;
   language: string;
   name: string;
   network: Network;
@@ -32,17 +43,17 @@ export interface Movie {
 interface Network {
   id: number;
   name: string;
-  country: {
-    name: string;
-    code: string;
-    timezone: string;
+  country?: {
+    name?: string;
+    code?: string;
+    timezone?: string;
   };
   officialSite: string | null;
 }
 
 interface Link {
   self: { href: string };
-  previousepisode: {
+  previousepisode?: {
     href: string;
     name: string;
   };

@@ -1,5 +1,9 @@
+import { ConfigProvider } from 'antd';
+
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
+
+import { antStyleTheme } from '@/app/shared/antStyleTheme';
 
 import './globals.css';
 import './lib/theme/css-variables.css';
@@ -22,9 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable}`}>
-        <StoreProvider>{children}</StoreProvider>
-      </body>
+      <ConfigProvider theme={antStyleTheme}>
+        <body className={`${roboto.variable}`}>
+          <StoreProvider>{children}</StoreProvider>
+        </body>
+      </ConfigProvider>
     </html>
   );
 }
