@@ -2,12 +2,10 @@
 
 import { Card, Image, Rate } from 'antd';
 
-import Link from 'next/link';
-
 import { Movie } from '@/app/shared/types/movie.interface';
 
 import { getYearFromString } from '@/app/utils/dateUtils';
-import { convertToPathString } from '@/app/utils/pathUtils';
+
 
 import styles from './card.module.css';
 import noImage from '@/app/assests/images/no-image.png';
@@ -35,7 +33,7 @@ export const CardPage = (props: Movie) => {
       <div className={genre}>
         {genres.map((item, index) => (
           <span key={`${name}-${item}`}>
-            <Link href={`/${convertToPathString(item)}`}>{item}</Link>
+            <span>{item}</span>
             {index < genres.length - 1 && ' • '}
           </span>
         ))}

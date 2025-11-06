@@ -64,11 +64,13 @@ export function MainPage({ type, param }: IUrlParams) {
           <CardPage key={movie.id} {...movie} />
         ))}
       </div>
-      <PaginationPage
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onChange={onPaginationHandle}
-      />
+        {
+            !type && <PaginationPage
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onChange={onPaginationHandle}
+            />
+        }
     </div>
   );
 }
