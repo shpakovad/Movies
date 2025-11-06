@@ -1,11 +1,11 @@
 import { Suspense } from 'react';
 
-import MainPage from '@/app/main/Main';
+import MoviesPage from '@/app/movies/MoviesPage';
 
 const Movies = () => {
   return (
     <Suspense>
-      <MainPage />
+      <MoviesPage />
     </Suspense>
   );
 };
