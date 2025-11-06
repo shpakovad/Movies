@@ -2,12 +2,10 @@
 
 import { Image, Rate } from 'antd';
 
-import Link from 'next/link';
-
 import { CurrentMovie, Movie } from '@/app/shared/types/movie.interface';
 
 import { getYearFromString } from '@/app/utils/dateUtils';
-import { convertToPathString } from '@/app/utils/pathUtils';
+
 
 import styles from './description.module.css';
 import noImage from '@/app/assests/images/no-image.png';
@@ -46,7 +44,7 @@ export const DescriptionMoviePage = (props: CurrentMovie) => {
             <div className={styles.details}>
               {genres.map((item, index) => (
                 <span key={`${name}-${item}`}>
-                  <Link href={`/${convertToPathString(item)}`}>{item}</Link>
+                  <span>{item}</span>
                   {index < genres.length - 1 && ' • '}
                 </span>
               ))}
