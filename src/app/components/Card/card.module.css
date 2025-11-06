@@ -1,6 +1,6 @@
 :root {
-  --margin-size: .875rem;
-  --padding-size: .875rem;
+  --margin-size: 0.875rem;
+  --padding-size: 0.875rem;
 }
 
 .cardWrapper {

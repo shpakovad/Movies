@@ -1,16 +1,19 @@
 'use client';
 
-import { Image, Rate } from 'antd';
+import { CaretRightOutlined } from '@ant-design/icons';
+import { Button, Image, Rate } from 'antd';
+
+import Link from 'next/link';
 
 import noImage from '@/app/assests/images/no-image.png';
-import { CurrentMovie, Movie } from '@/app/shared/types/movie.interface';
+import { CurrentMovie } from '@/app/shared/types/movie.interface';
 import { getYearFromString } from '@/app/utils/dateUtils';
 
 import styles from './description.module.css';
 
 export const DescriptionMoviePage = (props: CurrentMovie) => {
   const { main, cast } = props;
-  const { name, image, rating, premiered, genres, network, summary } = main;
+  const { name, image, rating, premiered, genres, network, summary, url } = main;
 
   const movieYear = getYearFromString(premiered);
   const ratingOutOf5 = rating.average ? rating.average / 2 : 0;
@@ -66,6 +69,15 @@ export const DescriptionMoviePage = (props: CurrentMovie) => {
                   {index < cast.length - 1 && ', '}
                 </span>
               ))}
+            </div>
+          )}
+          {url && (
+            <div className={styles.watchBtn}>
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                <Button type="primary" icon={<CaretRightOutlined />}>
+                  Watch now
+                </Button>
+              </a>
             </div>
           )}
         </div>
