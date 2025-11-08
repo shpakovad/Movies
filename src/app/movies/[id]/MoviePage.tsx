@@ -8,7 +8,7 @@ import DescriptionMoviePage from '@/app/components/Description/DescriptionMovieP
 import ErrorPage from '@/app/components/Error/ErrorPage';
 import LoadingPage from '@/app/components/Loading/LoadingPage';
 import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
-import { getMovie } from '@/app/lib/movie-service';
+import { getMovie } from '@/app/lib/server-services/movie-service';
 
 import styles from './movie.module.css';
 

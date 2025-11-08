@@ -14,6 +14,7 @@ export function HeaderPage() {
   const pathname = usePathname();
   const activeLink = (path: string) => (pathname === path ? 'var(--magenta-5)' : '');
 
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>

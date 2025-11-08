@@ -8,7 +8,7 @@ import PaginationPage from '@/app/components/Pagination/Pagination';
 import { setCurrentPage } from '@/app/lib/feauters/movies/movies-slice';
 import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
 import { useUrlParams } from '@/app/lib/hooks/useUrlParams';
-import { getMoviesList } from '@/app/lib/movie-service';
+import { getMoviesList } from '@/app/lib/server-services/movie-service';
 import { IUrlParams } from '@/app/shared/types/url-params.interface';
 import { getMovieListUrl } from '@/app/utils/apiUtils';
 
