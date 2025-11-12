@@ -23,12 +23,15 @@ export default function MoviePage() {
     }
   }, [dispatch, movieId]);
 
+  if ( error )
+  {
+    return <ErrorPage />
+  }
+
   return (
     <div className={styles.movieCardWrapper}>
       {loading || !movie?.main ? (
         <LoadingPage />
-      ) : error ? (
-        <ErrorPage />
       ) : (
         <DescriptionMoviePage {...movie} />
       )}

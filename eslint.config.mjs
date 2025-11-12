@@ -1,26 +1,45 @@
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import nextVitals from 'eslint-config-next/core-web-vitals';
-import nextTs from 'eslint-config-next/typescript';
-import { defineConfig, globalIgnores } from 'eslint/config';
+import js from '@eslint/js';
+import next from '@next/eslint-plugin-next';
+import typescriptParser from '@typescript-eslint/parser';
+import unusedImports from 'eslint-plugin-unused-imports';
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  // Override default ignores of eslint-config-next.
+export default [
+  js.configs.recommended,
+
+  // TypeScript и JSX файлы
   {
-    extends: ['next/core-web-vitals', 'prettier'],
-    plugins: ['prettier'],
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: typescriptParser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    plugins: {
+      '@next/next': next,
+      'unused-imports': unusedImports,
+    },
     rules: {
-      'prettier/prettier': 'error',
+      ...next.configs.recommended.rules,
+      ...next.configs['core-web-vitals'].rules,
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': [
+        'warn',
+        {
+          vars: 'all',
+          varsIgnorePattern: '^_',
+          args: 'after-used',
+          argsIgnorePattern: '^_',
+        },
+      ],
     },
   },
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    '.next/**',
-    'out/**',
-    'build/**',
-    'next-env.d.ts',
-  ]),
-]);
 
-export default eslintConfig;
+  {
+    ignores: ['.next/**', 'node_modules/**', 'next-env.d.ts', 'out/**', 'build/**'],
+  },
+];

@@ -33,7 +33,7 @@ export const CardPage = (props: Movie) => {
         {image?.medium ? (
           <Image alt={name} src={image?.medium} width="70%" height="70%" preview={false} />
         ) : (
-          <img src={noImage.src} alt={name} width="190px" height="245px" />
+          <Image src={noImage.src} alt={name} width="190px" height="245px" />
         )}
       </div>
       <div className={genre}>

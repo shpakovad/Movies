@@ -3,8 +3,6 @@
 import { CaretRightOutlined } from '@ant-design/icons';
 import { Button, Image, Rate } from 'antd';
 
-import Link from 'next/link';
-
 import noImage from '@/app/assests/images/no-image.png';
 import { CurrentMovie } from '@/app/shared/types/movie.interface';
 import { getYearFromString } from '@/app/utils/dateUtils';
@@ -29,7 +27,7 @@ export const DescriptionMoviePage = (props: CurrentMovie) => {
             height="calc(100vh - 81px)"
           />
         ) : (
-          <img src={noImage.src} alt={name} width="auto" height="calc(100vh - 81px)" />
+          <Image src={noImage.src} alt={name} width="auto" height="calc(100vh - 81px)" />
         )}
 
         <div className={styles.heroOverlay} />

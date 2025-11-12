@@ -2,11 +2,13 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
 import HeaderPage from '@/app/components/Header/HeaderPage';
+import { AntdCompatProvider } from '@/app/providers/AntdCompatProvider';
 import { AntdProvider } from '@/app/providers/AntdProvider';
 import StoreProvider from '@/app/providers/StoreProvider';
 
 import './globals.css';
 import './lib/theme/css-variables.css';
+import {ReactNode} from "react";
 
 const roboto = Roboto({
   variable: '--font-roboto-sans',
@@ -21,16 +23,18 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
       <AntdProvider>
         <body className={`${roboto.variable}`}>
-          <StoreProvider>
-            <HeaderPage />
-            <main>{children}</main>
-          </StoreProvider>
+          <AntdCompatProvider>
+            <StoreProvider>
+              <HeaderPage />
+              <main>{children}</main>
+            </StoreProvider>
+          </AntdCompatProvider>
         </body>
       </AntdProvider>
     </html>
