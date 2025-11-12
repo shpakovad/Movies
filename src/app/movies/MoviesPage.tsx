@@ -15,8 +15,10 @@ import { getMovieListUrl } from '@/app/utils/apiUtils';
 import CardPage from '../components/Card/CardPage';
 
 import styles from './movies.module.css';
+import {MOVIES_API} from "@/app/shared/constants";
+import {IMoviesPageProps} from "@/app/shared/types/movie.interface";
 
-export function MoviesPage({ type, param }: IUrlParams) {
+export function MoviesPage({ readyMoviesList }: IMoviesPageProps) {
   const dispatch = useAppDispatch();
 
   const { urlPage, addToUrl } = useUrlParams({
@@ -24,21 +26,28 @@ export function MoviesPage({ type, param }: IUrlParams) {
     additionalString: '?',
   });
 
-  const api = getMovieListUrl({ type, param });
-
   const { error, loading, movies, currentPage, totalPages } = useAppSelector(
     (state) => state.moviesState
   );
+  const api = `${MOVIES_API}shows?`;
 
   useEffect(() => {
-    if (urlPage !== null) {
+    if ( readyMoviesList )
+    {
+      return;
+    }
+
+    if (urlPage !== null)
+    {
       const pageNum = parseInt(urlPage);
       dispatch(setCurrentPage(pageNum));
       dispatch(getMoviesList({ api, page: pageNum }));
-    } else {
+    }
+    else
+    {
       dispatch(getMoviesList({ api }));
     }
-  }, [dispatch]);
+  }, [dispatch,readyMoviesList]);
 
   const onPaginationHandle = useCallback(
     (page: number) => {
@@ -50,18 +59,21 @@ export function MoviesPage({ type, param }: IUrlParams) {
     [dispatch]
   );
 
-  return loading || movies.length === 0 ? (
+  const isPagination = readyMoviesList ? readyMoviesList.length > 200 : movies.length > 200;
+  const renderedList = readyMoviesList ?? movies;
+
+  return loading || renderedList.length === 0 ? (
     <LoadingPage />
   ) : error ? (
     <Error />
   ) : (
     <div>
       <div className={styles.cardsWrapper}>
-        {movies.map((movie) => (
+        {renderedList.map((movie) => (
           <CardPage key={movie.id} {...movie} />
         ))}
       </div>
-      {!type && (
+      {isPagination && (
         <PaginationPage
           currentPage={currentPage}
           totalPages={totalPages}

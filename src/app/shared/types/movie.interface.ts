@@ -58,3 +58,7 @@ interface Link {
     name: string;
   };
 }
+
+export interface IMoviesPageProps {
+  readyMoviesList?: Movie[]
+}

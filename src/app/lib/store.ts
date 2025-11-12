@@ -9,11 +9,10 @@ export const makeStore = () => {
     reducer: {
       moviesState: moviesReducer,
       movieState: movieReducer,
-      search: searchReducer
+      search: searchReducer,
     },
   });
 };
-
 
 export type AppStore = ReturnType<typeof makeStore>;
 

@@ -9,7 +9,7 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   margin: 0 1.875rem;
   gap: 1.25rem;
 }
