@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
@@ -8,7 +10,6 @@ import StoreProvider from '@/app/providers/StoreProvider';
 
 import './globals.css';
 import './lib/theme/css-variables.css';
-import {ReactNode} from "react";
 
 const roboto = Roboto({
   variable: '--font-roboto-sans',

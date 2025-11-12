@@ -60,5 +60,5 @@ interface Link {
 }
 
 export interface IMoviesPageProps {
-  readyMoviesList?: Movie[]
+  readyMoviesList?: Movie[];
 }

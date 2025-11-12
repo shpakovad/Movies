@@ -4,24 +4,24 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button, Divider, Input, Space } from 'antd';
 
 import Link from 'next/link';
-import {usePathname, useRouter} from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
+import { setSearchParam } from '@/app/lib/feauters/search/search-slice';
+import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
 import { HEADER_ITEMS } from '@/app/shared/constants';
 
 import styles from './header.module.css';
-import {useAppDispatch, useAppSelector} from "@/app/lib/hooks";
-import {setSearchParam} from "@/app/lib/feauters/search/search-slice";
 
 export function HeaderPage() {
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const route = useRouter();
 
-  const { searchParam} = useAppSelector(state=>state.search);
+  const { searchParam } = useAppSelector((state) => state.search);
   const activeLink = (path: string) => (pathname === path ? 'var(--magenta-5)' : '');
 
   const onChangeSearchInputValue = (value: string) => {
-    dispatch(setSearchParam(value))
+    dispatch(setSearchParam(value));
   };
 
   const onChangePass = () => route.push(`/movies/search?q=${searchParam}&page=1`);

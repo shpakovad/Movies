@@ -6,11 +6,10 @@
   margin-top: 2rem;
 }
 
-.description{
-color: var(--magenta-5);
+.description {
+  color: var(--magenta-5);
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 2rem 0;
 }
-
