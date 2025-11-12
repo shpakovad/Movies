@@ -9,14 +9,12 @@ import { setCurrentPage } from '@/app/lib/feauters/movies/movies-slice';
 import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
 import { useUrlParams } from '@/app/lib/hooks/useUrlParams';
 import { getMoviesList } from '@/app/lib/server-services/movie-service';
-import { IUrlParams } from '@/app/shared/types/url-params.interface';
-import { getMovieListUrl } from '@/app/utils/apiUtils';
+import { MOVIES_API } from '@/app/shared/constants';
+import { IMoviesPageProps } from '@/app/shared/types/movie.interface';
 
 import CardPage from '../components/Card/CardPage';
 
 import styles from './movies.module.css';
-import {MOVIES_API} from "@/app/shared/constants";
-import {IMoviesPageProps} from "@/app/shared/types/movie.interface";
 
 export function MoviesPage({ readyMoviesList }: IMoviesPageProps) {
   const dispatch = useAppDispatch();
@@ -32,22 +30,18 @@ export function MoviesPage({ readyMoviesList }: IMoviesPageProps) {
   const api = `${MOVIES_API}shows?`;
 
   useEffect(() => {
-    if ( readyMoviesList )
-    {
+    if (readyMoviesList) {
       return;
     }
 
-    if (urlPage !== null)
-    {
+    if (urlPage !== null) {
       const pageNum = parseInt(urlPage);
       dispatch(setCurrentPage(pageNum));
       dispatch(getMoviesList({ api, page: pageNum }));
-    }
-    else
-    {
+    } else {
       dispatch(getMoviesList({ api }));
     }
-  }, [dispatch,readyMoviesList]);
+  }, [dispatch, readyMoviesList]);
 
   const onPaginationHandle = useCallback(
     (page: number) => {

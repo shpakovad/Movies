@@ -36,6 +36,7 @@ export default [
           argsIgnorePattern: '^_',
         },
       ],
+      'no-undef': 'off',
     },
   },
 
