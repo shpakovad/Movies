@@ -19,7 +19,7 @@ export function HeaderPage() {
   const dispatch = useAppDispatch();
   const route = useRouter();
   const searchParams = useSearchParams();
-  console.log({ pathname, route });
+
   const query = searchParams.get('q');
 
   const { searchParam } = useAppSelector((state) => state.search);

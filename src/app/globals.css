@@ -23,7 +23,7 @@ body {
 }
 
 a {
-  color: var(--magenta-3) !important;
+  color: var(--magenta-3);
   text-decoration: none;
 }
 

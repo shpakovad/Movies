@@ -1,0 +1,6 @@
+.link {
+  color: var(--magenta-3);
+}
+.link:hover {
+  color: var(--magenta-5);
+}
