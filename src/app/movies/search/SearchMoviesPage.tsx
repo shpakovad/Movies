@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
+import LoadingPage from '@/app/components/Loading/LoadingPage';
 import NoResultsPage from '@/app/components/Noresults/NoResultsPage';
 import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
 import { getSearchMovies } from '@/app/lib/server-services/search-service';
@@ -14,7 +15,7 @@ export default function SearchMoviesPage() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q');
 
-  const { resultSearchList } = useAppSelector((state) => state.search);
+  const { resultSearchList, loading } = useAppSelector((state) => state.search);
 
   useEffect(() => {
     if (query && query.length !== 0) {
@@ -28,6 +29,8 @@ export default function SearchMoviesPage() {
     <div>
       {renderedMovies && renderedMovies.length > 0 ? (
         <MoviesPage readyMoviesList={renderedMovies} />
+      ) : loading ? (
+        <LoadingPage />
       ) : (
         <NoResultsPage />
       )}

@@ -3,8 +3,10 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Divider, Input, Space } from 'antd';
 
+import { useEffect } from 'react';
+
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { setSearchParam } from '@/app/lib/feauters/search/search-slice';
 import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
@@ -16,6 +18,9 @@ export function HeaderPage() {
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const route = useRouter();
+  const searchParams = useSearchParams();
+
+  const query = searchParams.get('q');
 
   const { searchParam } = useAppSelector((state) => state.search);
   const activeLink = (path: string) => (pathname === path ? 'var(--magenta-5)' : '');
@@ -23,6 +28,10 @@ export function HeaderPage() {
   const onChangeSearchInputValue = (value: string) => {
     dispatch(setSearchParam(value));
   };
+
+  useEffect(() => {
+    dispatch(setSearchParam(query));
+  }, []);
 
   const onChangePass = () => route.push(`/movies/search?q=${searchParam}&page=1`);
 
@@ -37,6 +46,7 @@ export function HeaderPage() {
         <span>
           <Space.Compact>
             <Input
+              value={searchParam || ''}
               placeholder="type to search"
               onChange={(e) => onChangeSearchInputValue(e.target.value)}
               onPressEnter={onChangePass}

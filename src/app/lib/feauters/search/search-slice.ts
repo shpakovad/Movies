@@ -13,7 +13,7 @@ interface SearchState {
 const initialState: SearchState = {
   searchParam: null,
   resultSearchList: [],
-  loading: false,
+  loading: true,
   error: null,
 };
 
