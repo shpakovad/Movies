@@ -19,7 +19,7 @@ export function HeaderPage() {
   const dispatch = useAppDispatch();
   const route = useRouter();
   const searchParams = useSearchParams();
-
+  console.log({ pathname, route });
   const query = searchParams.get('q');
 
   const { searchParam } = useAppSelector((state) => state.search);
@@ -31,7 +31,10 @@ export function HeaderPage() {
 
   useEffect(() => {
     dispatch(setSearchParam(query));
-  }, []);
+    return () => {
+      dispatch(setSearchParam(null));
+    };
+  }, [query]);
 
   const onChangePass = () => route.push(`/movies/search?q=${searchParam}&page=1`);
 
