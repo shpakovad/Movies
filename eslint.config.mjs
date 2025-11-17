@@ -1,12 +1,12 @@
 import js from '@eslint/js';
 import next from '@next/eslint-plugin-next';
+import typescriptPlugin from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 import unusedImports from 'eslint-plugin-unused-imports';
 
 export default [
   js.configs.recommended,
 
-  // TypeScript и JSX файлы
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
@@ -22,20 +22,26 @@ export default [
     plugins: {
       '@next/next': next,
       'unused-imports': unusedImports,
+      '@typescript-eslint': typescriptPlugin,
     },
     rules: {
       ...next.configs.recommended.rules,
       ...next.configs['core-web-vitals'].rules,
-      'unused-imports/no-unused-imports': 'error',
-      'unused-imports/no-unused-vars': [
-        'warn',
+      ...typescriptPlugin.configs.recommended.rules,
+
+      // Добавьте правило TypeScript для неиспользованных переменных
+      '@typescript-eslint/no-unused-vars': [
+        'error',
         {
-          vars: 'all',
-          varsIgnorePattern: '^_',
-          args: 'after-used',
           argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
         },
       ],
+
+      '@typescript-eslint/no-explicit-any': 'off',
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': 'off', // Отключите это правило
+
       'no-undef': 'off',
     },
   },
