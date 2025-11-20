@@ -4,7 +4,7 @@ export interface MovieGenres {
 }
 
 export interface CurrentMovie {
-  cast?: ICast | [];
+  cast?: string[] | null;
   main: Movie;
 }
 
