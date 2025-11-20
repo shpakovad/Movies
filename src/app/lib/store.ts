@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import mainContentReducer from './feauters/main/main-content-slice';
 import movieReducer from './feauters/movies/movie-slice';
 import moviesReducer from './feauters/movies/movies-slice';
 import searchReducer from './feauters/search/search-slice';
@@ -10,6 +11,7 @@ export const makeStore = () => {
       moviesState: moviesReducer,
       movieState: movieReducer,
       search: searchReducer,
+      mainContentMovie: mainContentReducer,
     },
   });
 };

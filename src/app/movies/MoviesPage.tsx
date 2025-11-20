@@ -9,7 +9,6 @@ import { setCurrentPage } from '@/app/lib/feauters/movies/movies-slice';
 import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
 import { useUrlParams } from '@/app/lib/hooks/useUrlParams';
 import { getMoviesList } from '@/app/lib/server-services/movie-service';
-import { MOVIES_API } from '@/app/shared/constants';
 import { IMoviesPageProps } from '@/app/shared/types/movie.interface';
 
 import CardPage from '../components/Card/CardPage';
@@ -27,7 +26,6 @@ export function MoviesPage({ readyMoviesList }: IMoviesPageProps) {
   const { error, loading, movies, currentPage, totalPages } = useAppSelector(
     (state) => state.moviesState
   );
-  const api = `${MOVIES_API}shows?`;
 
   useEffect(() => {
     if (readyMoviesList) {
@@ -37,9 +35,9 @@ export function MoviesPage({ readyMoviesList }: IMoviesPageProps) {
     if (urlPage !== null) {
       const pageNum = parseInt(urlPage);
       dispatch(setCurrentPage(pageNum));
-      dispatch(getMoviesList({ api, page: pageNum }));
+      dispatch(getMoviesList(pageNum));
     } else {
-      dispatch(getMoviesList({ api }));
+      dispatch(getMoviesList());
     }
   }, [dispatch, readyMoviesList]);
 
@@ -48,7 +46,7 @@ export function MoviesPage({ readyMoviesList }: IMoviesPageProps) {
       dispatch(setCurrentPage(page));
       addToUrl({ addedParameter: page });
 
-      dispatch(getMoviesList({ api, page }));
+      dispatch(getMoviesList(page));
     },
     [dispatch]
   );

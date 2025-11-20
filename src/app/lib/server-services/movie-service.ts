@@ -5,10 +5,10 @@ import { Movie, MovieGenres } from '@/app/shared/types/movie.interface';
 
 export const getMoviesList = createAsyncThunk(
   'movies/getMoviesList',
-  async ({ api, page }: { api: string; page?: number }, { rejectWithValue }: any = {}) => {
+  async (page?: number, { rejectWithValue }: any = {}) => {
     const requestPage = page ?? 1;
     try {
-      const response = await fetch(`${api}page=${requestPage}`);
+      const response = await fetch(`${MOVIES_API}shows?page=${requestPage}`);
 
       if (!response.ok) {
         throw new Error('Network response was not ok');

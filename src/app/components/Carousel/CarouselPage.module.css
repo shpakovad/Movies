@@ -1,0 +1,28 @@
+.wrapper {
+  width: 300px;
+  margin: 30px auto;
+}
+.content {
+  padding-top: 20px;
+  margin: 0 auto;
+  height: 350px;
+  color: var(--gray-1);
+  line-height: 160px;
+  text-align: center;
+  background: var(--gray-10);
+}
+
+.flexContainer {
+  display: flex !important;
+  margin: 0 auto;
+  padding-top: 20px;
+  height: 350px;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexContainer svg {
+  fill: var(--gray-1);
+  height: 30px;
+  width: 30px;
+}
