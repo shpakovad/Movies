@@ -5,19 +5,28 @@ import { Carousel, Image } from 'antd';
 
 import { useState } from 'react';
 
-import { useGetPopularSeriesQuery } from '@/app/api/tvMazeApi';
+import { ICarousel } from '@/app/main/Main';
+import { Movie } from '@/app/shared/types/movie.interface';
 
 import styles from './CarouselPage.module.css';
+
+interface QueryResult {
+  data?: Movie;
+  isLoading: boolean;
+  isFetching: boolean;
+}
 
 interface IProps {
   content: string[];
   title: string;
+  query: ({ index, name }: ICarousel) => QueryResult;
+  name: string;
 }
 
-export function CarouselPage({ content, title }: IProps) {
+export function CarouselPage({ content, title, query, name }: IProps) {
   const [seriesIndex, setSeriesIndex] = useState(0);
 
-  const { data: movie, isLoading, isFetching } = useGetPopularSeriesQuery(seriesIndex);
+  const { data: movie, isLoading, isFetching } = query({ index: seriesIndex, name } as ICarousel);
 
   const loading = isLoading && isFetching;
   return (

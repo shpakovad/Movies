@@ -6,3 +6,4 @@ export const HEADER_ITEMS = [
 ];
 
 export const POPULAR_SERIES = ['269', '430', '19', '431', '84836', '527', '169', '335'];
+export const POPULAR_MOVIES = ['62271', '87959', '52336', '42846', '1907'];

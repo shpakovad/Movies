@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { MOVIES_API, POPULAR_SERIES } from '@/app/shared/constants';
+import { MOVIES_API, POPULAR_MOVIES, POPULAR_SERIES } from '@/app/shared/constants';
 
 export const tvMazeApi = createApi({
   reducerPath: 'tvmazeApi',
@@ -35,9 +35,10 @@ export const tvMazeApi = createApi({
       },
     }),
 
-    getPopularSeries: builder.query({
-      query: (index: number) => {
-        const selectedItem = POPULAR_SERIES[index];
+    getPopularShows: builder.query({
+      query: ({ index, key }: { index: number; key: string }) => {
+        console.log({ index, key });
+        const selectedItem = key === 'movies' ? POPULAR_MOVIES[index] : POPULAR_SERIES[index];
         return `shows/${selectedItem}`;
       },
     }),
@@ -49,5 +50,5 @@ export const {
   useGetSearchListQuery,
   useGetMovieQuery,
   useGetMovieCastQuery,
-  useGetPopularSeriesQuery,
+  useGetPopularShowsQuery,
 } = tvMazeApi;
