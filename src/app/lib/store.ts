@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import { tvMazeApi } from '@/app/api/tvMazeApi';
+
 import mainContentReducer from './feauters/main/main-content-slice';
 import movieReducer from './feauters/movies/movie-slice';
 import moviesReducer from './feauters/movies/movies-slice';
@@ -12,7 +14,9 @@ export const makeStore = () => {
       movieState: movieReducer,
       search: searchReducer,
       mainContentMovie: mainContentReducer,
+      [tvMazeApi.reducerPath]: tvMazeApi.reducer,
     },
+    middleware: (gDM) => gDM().concat(tvMazeApi.middleware),
   });
 };
 

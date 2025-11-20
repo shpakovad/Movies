@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getMovie } from '@/app/lib/server-services/movie-service';
 import { CurrentMovie } from '@/app/shared/types/movie.interface';
 
 interface MovieState {
@@ -19,21 +18,6 @@ const movieSlice = createSlice({
   name: 'movie',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(getMovie.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(getMovie.fulfilled, (state, action) => {
-        state.loading = false;
-        state.movie = action.payload;
-      })
-      .addCase(getMovie.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload as string;
-      });
-  },
 });
 
 export default movieSlice.reducer;

@@ -7,16 +7,35 @@ export const tvMazeApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: MOVIES_API,
   }),
-  tagTypes: ['MoviesList'],
+  tagTypes: ['MoviesList', 'SearchList', 'Movie'],
   endpoints: (builder) => ({
-    getMoviesList: builder.query({
-      query: ({ api, page }) => {
-        const requestPage = page ?? 1;
-        return `shows?page=${requestPage}`;
+    getList: builder.query({
+      query: (page = 1) => {
+        return `shows?page=${page}`;
       },
       keepUnusedDataFor: 60,
+    }),
+
+    getSearchList: builder.query({
+      query: (searchString = ''): string => {
+        const query = encodeURIComponent(searchString);
+        return `search/shows?q=${query}`;
+      },
+      keepUnusedDataFor: 60,
+    }),
+
+    getMovie: builder.query({
+      query: (id: string) => {
+        return `shows/${id}`;
+      },
+    }),
+    getMovieCast: builder.query({
+      query: (id: string) => {
+        return `shows/${id}/cast`;
+      },
     }),
   }),
 });
 
-export const { useGetMoviesListQuery } = tvMazeApi;
+export const { useGetListQuery, useGetSearchListQuery, useGetMovieQuery, useGetMovieCastQuery } =
+  tvMazeApi;

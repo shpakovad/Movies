@@ -4,7 +4,7 @@ export interface MovieGenres {
 }
 
 export interface CurrentMovie {
-  cast?: string[] | [];
+  cast?: ICast | [];
   main: Movie;
 }
 
@@ -43,12 +43,14 @@ export interface Movie {
 interface Network {
   id: number;
   name: string;
-  country?: {
-    name?: string;
-    code?: string;
-    timezone?: string;
-  };
+  country?: ICountry;
   officialSite: string | null;
+}
+
+interface ICountry {
+  name?: string;
+  code?: string;
+  timezone?: string;
 }
 
 interface Link {
@@ -61,4 +63,28 @@ interface Link {
 
 export interface IMoviesPageProps {
   readyMoviesList?: Movie[];
+}
+
+export interface ICast {
+  character: {
+    id: number;
+    image: Image;
+    name: string;
+    url: string;
+    _links: Link;
+  };
+  person: {
+    birthday: string;
+    country: ICountry;
+    deathday: string | null;
+    gender: string;
+    id: number;
+    image: Image;
+    name: string;
+    updated: number;
+    url: string;
+    _links: Link;
+  };
+  self: boolean;
+  voice: boolean;
 }

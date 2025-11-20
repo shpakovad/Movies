@@ -23,7 +23,7 @@ export const useUrlParams = ({ searchParam, additionalString }: IProps) => {
   };
 
   return {
-    urlPage,
+    urlPage: urlPage || '1',
     addToUrl,
   };
 };

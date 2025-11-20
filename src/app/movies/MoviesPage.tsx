@@ -1,15 +1,15 @@
 'use client';
 
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
+import { useGetListQuery } from '@/app/api/tvMazeApi';
 import Error from '@/app/components/Error/ErrorPage';
 import LoadingPage from '@/app/components/Loading/LoadingPage';
 import PaginationPage from '@/app/components/Pagination/Pagination';
 import { setCurrentPage } from '@/app/lib/feauters/movies/movies-slice';
 import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
 import { useUrlParams } from '@/app/lib/hooks/useUrlParams';
-import { getMoviesList } from '@/app/lib/server-services/movie-service';
-import { IMoviesPageProps } from '@/app/shared/types/movie.interface';
+import { IMoviesPageProps, Movie, MovieGenres } from '@/app/shared/types/movie.interface';
 
 import CardPage from '../components/Card/CardPage';
 
@@ -23,9 +23,13 @@ export function MoviesPage({ readyMoviesList }: IMoviesPageProps) {
     additionalString: '?',
   });
 
-  const { error, loading, movies, currentPage, totalPages } = useAppSelector(
-    (state) => state.moviesState
-  );
+  const { data, isLoading, isError } = useGetListQuery(urlPage);
+  const movies = useMemo(() => {
+    if (!data) return null;
+    return data.map((item: MovieGenres | Movie) => (item.show ? item.show : item));
+  }, [data]);
+
+  const { currentPage, totalPages } = useAppSelector((state) => state.moviesState);
 
   useEffect(() => {
     if (readyMoviesList) {
@@ -35,9 +39,6 @@ export function MoviesPage({ readyMoviesList }: IMoviesPageProps) {
     if (urlPage !== null) {
       const pageNum = parseInt(urlPage);
       dispatch(setCurrentPage(pageNum));
-      dispatch(getMoviesList(pageNum));
-    } else {
-      dispatch(getMoviesList());
     }
   }, [dispatch, readyMoviesList]);
 
@@ -45,23 +46,23 @@ export function MoviesPage({ readyMoviesList }: IMoviesPageProps) {
     (page: number) => {
       dispatch(setCurrentPage(page));
       addToUrl({ addedParameter: page });
-
-      dispatch(getMoviesList(page));
     },
     [dispatch]
   );
 
+  if (isLoading && !movies) {
+    return <LoadingPage />;
+  }
+
   const isPagination = readyMoviesList ? readyMoviesList.length > 200 : movies.length > 200;
   const renderedList = readyMoviesList ?? movies;
 
-  return loading || renderedList.length === 0 ? (
-    <LoadingPage />
-  ) : error ? (
+  return isError ? (
     <Error />
   ) : (
     <div>
       <div className={styles.cardsWrapper}>
-        {renderedList.map((movie) => (
+        {renderedList.map((movie: Movie) => (
           <CardPage key={movie.id} {...movie} />
         ))}
       </div>

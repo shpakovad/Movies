@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getSearchMovies } from '@/app/lib/server-services/search-service';
 import { MovieGenres } from '@/app/shared/types/movie.interface';
 
 interface SearchState {
@@ -24,21 +23,6 @@ const searchSlice = createSlice({
     setSearchParam: (state, action) => {
       state.searchParam = action.payload;
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getSearchMovies.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(getSearchMovies.fulfilled, (state, action) => {
-        state.loading = false;
-        state.resultSearchList = action.payload;
-      })
-      .addCase(getSearchMovies.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload as string;
-      });
   },
 });
 
