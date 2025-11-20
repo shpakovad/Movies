@@ -3,7 +3,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import { tvMazeApi } from '@/app/api/tvMazeApi';
 
 import mainContentReducer from './feauters/main/main-content-slice';
-import movieReducer from './feauters/movies/movie-slice';
 import moviesReducer from './feauters/movies/movies-slice';
 import searchReducer from './feauters/search/search-slice';
 
@@ -11,7 +10,6 @@ export const makeStore = () => {
   return configureStore({
     reducer: {
       moviesState: moviesReducer,
-      movieState: movieReducer,
       search: searchReducer,
       mainContentMovie: mainContentReducer,
       [tvMazeApi.reducerPath]: tvMazeApi.reducer,
