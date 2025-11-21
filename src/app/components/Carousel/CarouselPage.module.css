@@ -2,6 +2,11 @@
   width: 300px;
   margin: 30px auto;
 }
+.title
+{
+  text-align: center;
+  color: var(--magenta-2);
+}
 .content {
   padding-top: 20px;
   margin: 0 auto;

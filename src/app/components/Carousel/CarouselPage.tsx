@@ -31,7 +31,7 @@ export function CarouselPage({ content, title, query, name }: IProps) {
   const loading = isLoading && isFetching;
   return (
     <div className={styles.wrapper}>
-      <h2>{title}</h2>
+      <h2 className={styles.title}>{title}</h2>
       <Carousel
         arrows
         infinite={false}

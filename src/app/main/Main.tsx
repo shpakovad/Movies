@@ -23,7 +23,7 @@ export function MainPage() {
   );
 
   return (
-    <div>
+    <div style={{display:'flex'}}>
       <CarouselPage
         content={POPULAR_SERIES}
         query={seriesQuery}
