@@ -14,6 +14,7 @@ interface QueryResult {
   data?: Movie;
   isLoading: boolean;
   isFetching: boolean;
+
 }
 
 interface IProps {
